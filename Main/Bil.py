@@ -1,4 +1,5 @@
 import pygame
+import os
 pygame.font.init()
 pygame.mixer.init()
 
@@ -9,16 +10,27 @@ pygame.display.set_caption("First Game!")
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
+
+car = pygame.Rect(WIDTH//2 - car_WIDTH//2, HEIGHT//2 - car_HEIGHT//2, car_WIDTH, car_HEIGHT)
 
 BORDER = pygame.Rect(WIDTH//2 - 5, 0, 10, HEIGHT)
 
 FPS = 60
 VEL = 5
+car_WIDTH, car_HEIGHT = 55, 40
+
+car_IMAGE = pygame.image.load(
+    os.path.join('Assets', 'PNG', 'Cars', 'car_green_5.png')).convert_alpha()
+car = pygame.transform.rotate(pygame.transform.scale(
+    car_IMAGE, (car_WIDTH, car_HEIGHT)), 90)
+
 
 def draw_window():
     WIN.fill(WHITE)
-    pygame.draw.rect(WIN, RED, BORDER)
+    pygame.draw.rect(WIN, car, BORDER)
 
 def car_handle_movement(keys_pressed, car):
     if keys_pressed[pygame.K_LEFT] and car.x - VEL > BORDER.x + BORDER.width:  # LEFT
@@ -32,6 +44,7 @@ def car_handle_movement(keys_pressed, car):
 
 def main():
 
+    car_health = 10
 
     clock = pygame.time.Clock()
     run = True
