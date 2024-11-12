@@ -27,9 +27,10 @@ car_IMAGE = pygame.image.load(
 car = pygame.transform.rotate(pygame.transform.scale(
     car_IMAGE, (car_WIDTH, car_HEIGHT)), 90)
 
-SPACE = pygame.transform.scale(pygame.image.load(os.path.join('Assets', 'PNG', 'Tiles', 'Asphalt road', 'road_asphalt01.png')), (WIDTH, HEIGHT))
+BACKGROUND = pygame.transform.scale(pygame.image.load(os.path.join('Assets', 'PNG', 'Tiles', 'Asphalt road', 'road_asphalt01.png')), (WIDTH, HEIGHT))
 
 def draw_window(car_rect, car_image):
+    WIN.blit(BACKGROUND, (0,0))
     WIN.fill(WHITE)
     pygame.draw.rect(WIN, BLACK, BORDER)  # Draw the border in black
     WIN.blit(car_image, (car_rect.x, car_rect.y))  # Draw car image at its position
