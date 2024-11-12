@@ -13,6 +13,7 @@ RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
+BLACK = (0, 0, 0)
 
 
 BORDER = pygame.Rect(WIDTH//2 - 5, 0, 10, HEIGHT)
@@ -27,9 +28,11 @@ car = pygame.transform.rotate(pygame.transform.scale(
     car_IMAGE, (car_WIDTH, car_HEIGHT)), 90)
 
 
-def draw_window():
+def draw_window(car_rect, car_image):
     WIN.fill(WHITE)
-    pygame.draw.rect(WIN, car, BORDER)
+    pygame.draw.rect(WIN, BLACK, BORDER)  # Draw the border in black
+    WIN.blit(car_image, (car_rect.x, car_rect.y))  # Draw car image at its position
+    pygame.display.update()
 
 def car_handle_movement(keys_pressed, car):
     if keys_pressed[pygame.K_LEFT] and car.x - VEL > BORDER.x + BORDER.width:  # LEFT
